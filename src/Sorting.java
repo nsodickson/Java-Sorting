@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Sorting {
     public static long swaps = 0;
 
@@ -6,6 +8,39 @@ public class Sorting {
         arr[a] = arr[b];
         arr[b] = temp;
         swaps++;
+    }
+
+    public static int min(int[] arr) {
+        int min = arr[0];
+        for (int i: arr) {
+            if (i < min) {
+                min = i;
+            }
+        }
+        return min;
+    }
+
+    public static int max(int[] arr) {
+        int max = arr[0];
+        for (int i: arr) {
+            if (i > max) {
+                max = i;
+            }
+        }
+        return max;
+    }
+
+    public static int[] minMax(int[] arr) {
+        int[] min_max = {arr[0], arr[0]};
+        for (int i: arr) {
+            if (i < min_max[0]) {
+                min_max[0] = i;
+            }
+            if (i > min_max[1]) {
+                min_max[1] = i;
+            }
+        }
+        return min_max;
     }
 
     public static void quickSort(int[] arr, int left, int right) {
@@ -36,7 +71,6 @@ public class Sorting {
             mergeSort(arr, left, mid);
             mergeSort(arr, mid + 1, right);
 
-            // Copying the sections into right and left arrays
             int[] left_arr = new int[mid - left + 1];
             int[] right_arr = new int[right - mid];
             for (int i = 0; i < left_arr.length; i++) {
@@ -46,7 +80,6 @@ public class Sorting {
                 right_arr[i] = arr[mid + i + 1];
             }
 
-            // Merging the left and right arrays
             int idx = left, left_idx = 0, right_idx = 0;
             while (left_idx < left_arr.length && right_idx < right_arr.length) {
                 if (left_arr[left_idx] <= right_arr[right_idx]) {
@@ -139,18 +172,13 @@ public class Sorting {
     }
 
     public static void radixSortLSD(int[] arr) {
-        int[] out;
+        int[] out, counts;
         int digit;
 
-        int max = arr[0];
-        for (int i: arr) {
-            if (i > max) {
-                max = i;
-            }
-        }
+        int max = max(arr);
         for (int i = 1; max / i > 0; i *= 10) {
             out = new int[arr.length];
-            int[] counts = new int[19];
+            counts = new int[19];
             for (int n: arr) {
                 digit = n / i % 10;
                 counts[digit + 9]++;
@@ -170,7 +198,37 @@ public class Sorting {
     }
 
     public static void radixSortMSD(int[] arr) {
+        int p = 1, max = max(arr);
+        while (max / p > 9) {
+            p *= 10;
+        }
+        radixSortMSD(arr, 0, arr.length, p);
+    }
 
+    public static void radixSortMSD(int[] arr, int low, int high, int p) {
+        if (p > 0 && high - low > 1) {
+            int[] out = new int[high - low], counts = new int[19], ends;
+            int digit;
+            for (int i = low; i < high; i++) {
+                digit = arr[i] / p % 10;
+                counts[digit + 9]++;
+            }
+            for (int i = 1; i < counts.length; i++) {
+                counts[i] += counts[i - 1];
+            }
+            ends = Arrays.copyOf(counts, counts.length);
+            for (int i = high - 1; i >= low; i--) {
+                digit = arr[i] / p % 10;
+                out[counts[digit + 9] - 1] = arr[i];
+                counts[digit + 9]--;
+            }
+            for (int i = low; i < high; i++) {
+                arr[i] = out[i - low];
+            }
+            for (int i = 0; i < counts.length; i++) {
+                radixSortMSD(arr, counts[i] + low, ends[i] + low, p / 10);
+            }
+        }
     }
 
     public static void countingSort(int[] arr, int min, int max) {
@@ -192,32 +250,9 @@ public class Sorting {
     }
 
     public static void countingSort(int[] arr) {
-        int min = arr[0];
-        int max = arr[0];
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] < min) {
-                min = arr[i];
-            }
-            if (arr[i] > max) {
-                max = arr[i];
-            }
-        }
-
-        int[] out = new int[arr.length];
-        int[] counts = new int[max - min + 1];
-        for (int i: arr) {
-            counts[i - min]++;
-        }
-        for (int i = 1; i < counts.length; i++) {
-            counts[i] += counts[i - 1];
-        }
-        for (int i = arr.length - 1; i > -1; i--) {
-            out[counts[arr[i] - min] - 1] = arr[i];
-            counts[arr[i] - min]--;
-        }
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = out[i];
-        }
+        int[] min_max = minMax(arr);
+        int min = min_max[0], max = min_max[1];
+        countingSort(arr, min, max);
     }
 
     public static void gnomeSort(int[] arr) {
@@ -232,10 +267,6 @@ public class Sorting {
                 i++;
             }
         }
-    }
-
-    public static void shellSort(int[] arr) {
-
     }
 
     public static void maxHeapify(int[] arr, int root, int size) {
@@ -263,5 +294,17 @@ public class Sorting {
             swap(arr, 0, i);
             maxHeapify(arr, 0, i);
         }
+    }
+
+    public static void shellSort(int[] arr) {
+
+    }
+
+    public static void bitonicSort(int[] arr) {
+
+    }
+
+    public static void combSort(int[] arr) {
+        
     }
 }

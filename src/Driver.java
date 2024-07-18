@@ -3,17 +3,17 @@ import java.lang.Math;
 
 public class Driver {
     public static void main(String[] args) {
-        int[] arr = new int[100000];
+        int[] arr = new int[1000000];
 
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int) (Math.random() * 100000) + 1;
+            arr[i] = (int) (Math.random() * 1000000) + 1;
         }
 
         // arr[0] = Integer.MAX_VALUE;
         // arr[arr.length - 1] = Integer.MIN_VALUE;
 
         System.out.print("Array to sort: ");
-        displayArr(arr, 15, 5);
+        displayArr(arr, 10, 5);
 
         double start, end;
         int[] test;
@@ -115,7 +115,6 @@ public class Driver {
         }
 
         // Radix Sort (MSD)
-        /*
         Sorting.swaps = 0;
         test = Arrays.copyOf(arr, arr.length);
         start = System.currentTimeMillis();
@@ -126,7 +125,7 @@ public class Driver {
         } else {
             System.out.println("Radix sort (MSD) failed to sort the array");
         }
-         */
+
 
         // Heap Sort
         Sorting.swaps = 0;
@@ -141,7 +140,6 @@ public class Driver {
         }
 
         // Counting Sort
-        /*
         Sorting.swaps = 0;
         test = Arrays.copyOf(arr, arr.length);
         start = System.currentTimeMillis();
@@ -152,7 +150,6 @@ public class Driver {
         } else {
             System.out.println("Counting sort failed to sort the array");
         }
-         */
 
     }
 
@@ -180,7 +177,7 @@ public class Driver {
             System.out.print(arr[i] + " ");
         }
         System.out.print("...");
-        for (int i = arr.length - back - 1; i < arr.length; i++) {
+        for (int i = arr.length - back; i < arr.length; i++) {
             System.out.print(" " + arr[i]);
         }
         System.out.println("]");
