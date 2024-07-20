@@ -297,7 +297,7 @@ public class Sorting {
     }
 
     public static void shellSort(int[] arr) {
-
+        
     }
 
     public static void bitonicSort(int[] arr) {
@@ -306,5 +306,9 @@ public class Sorting {
 
     public static void combSort(int[] arr) {
         
+    }
+
+    public static void binaryInsertionSort(int[] arr) {
+
     }
 }
