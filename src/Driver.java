@@ -3,7 +3,7 @@ import java.lang.Math;
 
 public class Driver {
     public static void main(String[] args) {
-        int[] arr = new int[1000000];
+        int[] arr = new int[100000];
 
         for (int i = 0; i < arr.length; i++) {
             arr[i] = (int) (Math.random() * 1000000) + 1;
@@ -19,138 +19,149 @@ public class Driver {
         int[] test;
 
         // Bubble Sort
-        Sorting.swaps = 0;
+        Sorting.reset();
         test = Arrays.copyOf(arr, arr.length);
         start = System.currentTimeMillis();
-        Sorting.bubbleSort(test);
+        Sorting.bubbleSort(test, 0, test.length - 1);
         end = System.currentTimeMillis();
         if (isSorted(test)) {
-            System.out.println("Bubble sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps");
+            System.out.println("Bubble sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps and " + Sorting.comparisons + " comparisons");
         } else {
             System.out.println("Bubble sort failed to sort the array");
         }
 
         // Cocktail Shaker Sort
-        Sorting.swaps = 0;
+        Sorting.reset();
         test = Arrays.copyOf(arr, arr.length);
         start = System.currentTimeMillis();
-        Sorting.cocktailSort(test);
+        Sorting.cocktailSort(test, 0, test.length - 1);
         end = System.currentTimeMillis();
         if (isSorted(test)) {
-            System.out.println("Cocktail Shaker sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps");
+            System.out.println("Cocktail Shaker sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps and " + Sorting.comparisons + " comparisons");
         } else {
             System.out.println("Cocktail Shaker sort failed to sort the array");
         }
 
         // Gnome Sort
-        Sorting.swaps = 0;
+        Sorting.reset();
         test = Arrays.copyOf(arr, arr.length);
         start = System.currentTimeMillis();
-        Sorting.gnomeSort(test);
+        Sorting.gnomeSort(test, 0, test.length - 1);
         end = System.currentTimeMillis();
         if (isSorted(test)) {
-            System.out.println("Gnome sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps");
+            System.out.println("Gnome sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps and " + Sorting.comparisons + " comparisons");
         } else {
             System.out.println("Gnome sort failed to sort the array");
         }
 
         // Selection Sort
-        Sorting.swaps = 0;
+        Sorting.reset();
         test = Arrays.copyOf(arr, arr.length);
         start = System.currentTimeMillis();
-        Sorting.selectionSort(test);
+        Sorting.selectionSort(test, 0, test.length - 1);
         end = System.currentTimeMillis();
         if (isSorted(test)) {
-            System.out.println("Selection sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps");
+            System.out.println("Selection sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps and " + Sorting.comparisons + " comparisons");
         } else {
             System.out.println("Selection sort failed to sort the array");
         }
 
+
         // Insertion Sort
-        Sorting.swaps = 0;
+        Sorting.reset();
         test = Arrays.copyOf(arr, arr.length);
         start = System.currentTimeMillis();
-        Sorting.insertionSort(test);
+        Sorting.insertionSort(test, 0, test.length - 1);
         end = System.currentTimeMillis();
         if (isSorted(test)) {
-            System.out.println("Insertion sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps");
+            System.out.println("Insertion sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps and " + Sorting.comparisons + " comparisons");
         } else {
             System.out.println("Insertion sort failed to sort the array");
         }
 
+        // Binary Insertion Sort
+        Sorting.reset();
+        test = Arrays.copyOf(arr, arr.length);
+        start = System.currentTimeMillis();
+        Sorting.binaryInsertionSort(test, 0, test.length - 1);
+        end = System.currentTimeMillis();
+        if (isSorted(test)) {
+            System.out.println("Binary Insertion sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps and " + Sorting.comparisons + " comparisons");
+        } else {
+            System.out.println("Binary Insertion sort failed to sort the array");
+        }
+
         // Merge Sort
-        Sorting.swaps = 0;
+        Sorting.reset();
         test = Arrays.copyOf(arr, arr.length);
         start = System.currentTimeMillis();
         Sorting.mergeSort(test, 0, test.length - 1);
         end = System.currentTimeMillis();
         if (isSorted(test)) {
-            System.out.println("Merge sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps");
+            System.out.println("Merge sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps and " + Sorting.comparisons + " comparisons");
         } else {
             System.out.println("Merge sort failed to sort the array");
         }
 
         // Quick Sort
-        Sorting.swaps = 0;
+        Sorting.reset();
         test = Arrays.copyOf(arr, arr.length);
         start = System.currentTimeMillis();
         Sorting.quickSort(test, 0, test.length - 1);
         end = System.currentTimeMillis();
         if (isSorted(test)) {
-            System.out.println("Quick sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps");
+            System.out.println("Quick sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps and " + Sorting.comparisons + " comparisons");
         } else {
             System.out.println("Quick sort failed to sort the array");
         }
 
         // Radix Sort (LSD)
-        Sorting.swaps = 0;
+        Sorting.reset();
         test = Arrays.copyOf(arr, arr.length);
         start = System.currentTimeMillis();
-        Sorting.radixSortLSD(test);
+        Sorting.radixSortLSD(test, 0, test.length - 1);
         end = System.currentTimeMillis();
         if (isSorted(test)) {
-            System.out.println("Radix sort (LSD) took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps");
+            System.out.println("Radix sort (LSD) took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps and " + Sorting.comparisons + " comparisons");
         } else {
             System.out.println("Radix sort (LSD) failed to sort the array");
         }
 
         // Radix Sort (MSD)
-        Sorting.swaps = 0;
+        Sorting.reset();
         test = Arrays.copyOf(arr, arr.length);
         start = System.currentTimeMillis();
-        Sorting.radixSortMSD(test);
+        Sorting.radixSortMSD(test, 0, test.length - 1);
         end = System.currentTimeMillis();
         if (isSorted(test)) {
-            System.out.println("Radix sort (MSD) took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps");
+            System.out.println("Radix sort (MSD) took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps and " + Sorting.comparisons + " comparisons");
         } else {
             System.out.println("Radix sort (MSD) failed to sort the array");
         }
 
-
         // Heap Sort
-        Sorting.swaps = 0;
+        Sorting.reset();
         test = Arrays.copyOf(arr, arr.length);
         start = System.currentTimeMillis();
-        Sorting.heapSort(test);
+        Sorting.heapSort(test, 0, test.length - 1);
         end = System.currentTimeMillis();
         if (isSorted(test)) {
-            System.out.println("Heap sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps");
+            System.out.println("Heap sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps and " + Sorting.comparisons + " comparisons");
         } else {
             System.out.println("Heap sort failed to sort the array");
         }
 
         // Counting Sort
-        Sorting.swaps = 0;
+        Sorting.reset();
         test = Arrays.copyOf(arr, arr.length);
         start = System.currentTimeMillis();
-        Sorting.countingSort(test);
+        Sorting.countingSort(test, 0, test.length - 1);
         end = System.currentTimeMillis();
         if (isSorted(test)) {
-            System.out.println("Counting sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps");
+            System.out.println("Counting sort took " + (end - start) / 1000 + " seconds to run with " + Sorting.swaps + " swaps and " + Sorting.comparisons + " comparisons");
         } else {
             System.out.println("Counting sort failed to sort the array");
         }
-
     }
 
     public static boolean isSorted(int[] arr) {
